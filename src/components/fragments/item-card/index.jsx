@@ -6,6 +6,7 @@ import styles from './styles.module.css';
 import { Button } from 'components/atoms';
 import { Dots, IC_CHECKCIRCLE, IC_DOTS } from 'lib/images';
 import { Progress } from 'components/atoms';
+import { Dropdown } from '..';
 
 const ItemCard = (props) => {
   const { data } = props;
@@ -26,15 +27,15 @@ const ItemCard = (props) => {
               />
             </div>
 
-            <div className={styles.dropdown}>
+            <Dropdown
+              menu={[
+                { text: 'Menu 1', action: () => console.log('menu 1') },
+                { text: 'Menu 1', action: () => console.log('menu 1') },
+                { text: 'Menu 1', action: () => console.log('menu 1') },
+              ]}
+            >
               <Button icon={<Dots />} variant="text" />
-              <div className={styles['dropdown-content']}>
-                <p>Menu</p>
-                <p>Menu</p>
-                <p>Menu</p>
-                <p>Menu</p>
-              </div>
-            </div>
+            </Dropdown>
           </div>
         </section>
       )}
