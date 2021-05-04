@@ -1,0 +1,39 @@
+.tag {
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid var(--gray-1);
+  color: var(--gray-1);
+}
+
+.tag > p {
+  font-size: 1.2rem;
+}
+
+.tag.pink {
+  background-color: var(--bg-pink);
+  border: 1px solid var(--pink);
+  color: var(--pink);
+}
+
+.tag.blue {
+  background-color: var(--bg-blue);
+  border: 1px solid var(--blue);
+  color: var(--blue);
+}
+
+.tag.green {
+  background-color: var(--bg-green);
+  border: 1px solid var(--green);
+  color: var(--green);
+}
+
+.tag.purple {
+  background-color: var(--bg-purple);
+  border: 1px solid var(--purple);
+  color: var(--purple);
+}

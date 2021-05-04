@@ -1,0 +1,47 @@
+.base-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  border: none;
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.4rem;
+  outline: none;
+  border-radius: 0.2rem;
+}
+
+.base-button > img {
+  margin-right: 0.8rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.base-button.text {
+  background-color: transparent;
+  color: var(--dark-1);
+}
+
+.base-button.primary {
+  background-color: var(--green-2);
+  color: var(--white);
+}
+
+.base-button.secondary {
+  background-color: var(--white);
+  color: var(--dark-1);
+  outline: 1px solid var(--gray);
+}
+
+.base-button.danger {
+  background-color: var(--danger);
+  color: var(--white);
+}
+
+.base-button.text {
+  background-color: transparent;
+}
+
+.base-button.text:hover {
+  outline: 1px solid var(--gray-1);
+}

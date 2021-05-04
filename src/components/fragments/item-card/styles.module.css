@@ -1,0 +1,8 @@
+.placeholder {
+  color: var(--gray-2);
+  font-size: 1.4rem;
+}
+
+.item-content > h3 {
+  margin-bottom: 2rem;
+}

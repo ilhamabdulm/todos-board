@@ -1,0 +1,38 @@
+.base-card {
+  border-radius: 0.4rem;
+  padding: 1.4rem;
+  width: 100%;
+}
+
+.base-card.max-w-30 {
+  max-width: 30.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.base-card.default {
+  background-color: var(--white);
+  border: 1px solid var(--gray-1);
+}
+
+.base-card.pink {
+  background-color: var(--bg-pink);
+  border: 1px solid var(--pink);
+}
+
+.base-card.purple {
+  background-color: var(--bg-purple);
+  border: 1px solid var(--purple);
+}
+
+.base-card.blue {
+  background-color: var(--bg-blue);
+  border: 1px solid var(--blue);
+}
+
+.base-card.green {
+  background-color: var(--bg-green);
+  border: 1px solid var(--green);
+}

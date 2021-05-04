@@ -3,6 +3,9 @@
 html {
   font-size: 10px;
   --white: #ffffff;
+  --gray: #d9d9d9;
+  --gray-1: #e4e4e8;
+  --gray-2: #b7bdc9;
   --dark-1: #2f3136;
   --dark-2: #262626;
   --pink: #eb2f96;
@@ -10,9 +13,13 @@ html {
   --purple: #7b61ff;
   --bg-purple: #fcfafd;
   --blue: #2f54eb;
+  --blue-2: #1890ff;
   --bg-blue: #f7faff;
   --green: #52c41a;
+  --green-2: #27ae60;
   --bg-green: #f8fef1;
+  --danger: #eb5757;
+  --warning: #faad14;
 }
 
 * {
