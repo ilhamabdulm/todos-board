@@ -3,15 +3,32 @@ import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 
 const Button = (props) => {
-  const { variant, handleClick, icon, children } = props;
+  const { variant, handleClick, icon, children, ...rest } = props;
   const classes = [styles['base-button'], styles[variant]]
     .filter(Boolean)
     .join(' ');
 
   return (
-    <button className={classes} onClick={handleClick}>
-      {icon && <img src={icon} alt="plus-circle" />}
-      <span>{children}</span>
+    <button className={classes} onClick={handleClick} {...rest}>
+      {icon &&
+        (typeof icon === 'string' ? (
+          <img
+            src={icon}
+            alt="plus-circle"
+            style={{
+              borderRadius: children ? '0.2rem' : '50%',
+            }}
+          />
+        ) : (
+          <>{icon}</>
+        ))}
+      <span
+        style={{
+          marginLeft: icon ? '0.8rem' : 0,
+        }}
+      >
+        {children}
+      </span>
     </button>
   );
 };
