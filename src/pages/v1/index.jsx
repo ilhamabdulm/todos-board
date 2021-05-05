@@ -37,8 +37,6 @@ const V1 = () => {
   };
 
   const handleMove = (todoId, itemId, index, move) => {
-    // const isFirst = index === 0;
-    // const isLast = index === todos.length - 1;
     const searchIndex = move === 'prev' ? index - 1 : index + 1;
     const foundTodo = todos[searchIndex];
     const payload = {
