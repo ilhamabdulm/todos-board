@@ -1,14 +1,18 @@
 import axios from 'axios';
 
+import { getAuthToken } from 'utils/storage';
+
 const BASE_URL = (target) =>
-  `${process.env.REACT_APP_API_URL}/api/v1/${target}`;
+  `${
+    process.env.REACT_APP_API_URL || 'https://todos-project-api.herokuapp.com'
+  }/${target}`;
 
 const request = axios.create();
 
 request.interceptors.request.use(
   async (config) => {
     config.headers = {
-      authorization: `Bearer <token>`,
+      Authorization: `Bearer ${getAuthToken()}`,
       'Content-Type': 'application/json',
       ...config.headers,
     };
@@ -23,6 +27,7 @@ export const fetchApi = (url, method, param1 = null, param2) => {
     request[method](`${BASE_URL(url)}`, param1, param2)
       .then((response) => resolve(response.data))
       .catch((err) => {
+        console.log(err, 'error axios');
         const defaultError = {
           code: 500,
           status: 'error',

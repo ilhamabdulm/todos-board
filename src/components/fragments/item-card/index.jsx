@@ -4,7 +4,7 @@ import { CardBase } from 'components/atoms';
 
 import styles from './styles.module.css';
 import { Button } from 'components/atoms';
-import { Dots, IC_CHECKCIRCLE, IC_DOTS } from 'lib/images';
+import { Dots } from 'lib/images';
 import { Progress } from 'components/atoms';
 import { Dropdown } from '..';
 
