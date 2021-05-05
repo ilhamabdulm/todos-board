@@ -7,7 +7,7 @@ import {
 } from 'components/fragments';
 import MainLayout from 'components/layout/main-layout';
 
-import { getTodoList } from 'utils/fetch';
+import { getTodoList, manageTodoItems } from 'utils/fetch';
 
 import styles from './styles.module.css';
 
@@ -36,6 +36,27 @@ const V1 = () => {
       });
   };
 
+  const handleMove = (todoId, itemId, index, move) => {
+    // const isFirst = index === 0;
+    // const isLast = index === todos.length - 1;
+    const searchIndex = move === 'prev' ? index - 1 : index + 1;
+    const foundTodo = todos[searchIndex];
+    const payload = {
+      target_todo_id: foundTodo.id,
+    };
+
+    console.log(foundTodo);
+
+    manageTodoItems(todoId, 'patch', payload, itemId)
+      .then((res) => {
+        console.log(res, 'Berhasil move task');
+        fetchData();
+      })
+      .catch((err) => {
+        console.log(err, 'error move task');
+      });
+  };
+
   return (
     <>
       <MainLayout>
@@ -49,6 +70,11 @@ const V1 = () => {
                 variant={colorVariant[idx] || 'blue'}
                 data={todo}
                 setOpenModal={setOpenModal}
+                isFirst={idx === 0}
+                isLast={idx === todos.length - 1}
+                handleMove={(itemId, move) =>
+                  handleMove(todo.id, itemId, idx, move)
+                }
               />
             );
           })}

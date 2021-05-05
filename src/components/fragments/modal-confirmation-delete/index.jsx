@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { manageTodoItems } from 'utils/fetch';
 
 const ConfirmationDelete = (props) => {
-  const { visible, onClose, id, refetchData, data } = props;
+  const { visible, onClose, refetchData, data } = props;
 
   useEffect(() => {
     if (data) {
@@ -48,7 +48,6 @@ const ConfirmationDelete = (props) => {
 ConfirmationDelete.defaultProps = {
   visible: false,
   onClose: () => {},
-  id: '',
   refetchData: () => {},
   data: null,
 };
@@ -56,7 +55,6 @@ ConfirmationDelete.defaultProps = {
 ConfirmationDelete.propTypes = {
   visible: PropTypes.bool,
   onClose: PropTypes.func,
-  id: PropTypes.string | PropTypes.number,
   refetchData: PropTypes.func,
   data: PropTypes.any,
 };

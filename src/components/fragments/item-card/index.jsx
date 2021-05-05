@@ -15,7 +15,7 @@ import { Progress } from 'components/atoms';
 import { Dropdown } from '..';
 
 const ItemCard = (props) => {
-  const { data, openEdit, handleDelete, handleMove } = props;
+  const { data, openEdit, handleDelete, handleMove, isFirst, isLast } = props;
 
   const dropdownMenu = [
     {
@@ -24,7 +24,7 @@ const ItemCard = (props) => {
           <ArrowLeft /> &nbsp;&nbsp; Move Left
         </>
       ),
-      action: () => console.log('menu 1'),
+      action: () => handleMove('prev'),
     },
     {
       text: (
@@ -32,7 +32,7 @@ const ItemCard = (props) => {
           <ArrowRight /> &nbsp;&nbsp; Move Right
         </>
       ),
-      action: () => console.log('menu 1'),
+      action: () => handleMove('next'),
     },
     {
       text: (
@@ -51,6 +51,12 @@ const ItemCard = (props) => {
       action: () => handleDelete(data),
     },
   ];
+
+  if (isFirst) {
+    dropdownMenu.splice(0, 1);
+  } else if (isLast) {
+    dropdownMenu.splice(1, 1);
+  }
 
   return (
     <CardBase variant="default">
@@ -87,6 +93,8 @@ ItemCard.defaultProps = {
   openEdit: () => {},
   handleDelete: () => {},
   handleMove: () => {},
+  isLast: false,
+  isFirst: false,
 };
 
 ItemCard.propTypes = {
@@ -94,6 +102,8 @@ ItemCard.propTypes = {
   openEdit: PropTypes.func,
   handleDelete: PropTypes.func,
   handleMove: PropTypes.func,
+  isLast: PropTypes.bool,
+  isFirst: PropTypes.bool,
 };
 
 export default ItemCard;

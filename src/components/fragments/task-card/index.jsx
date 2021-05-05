@@ -10,7 +10,7 @@ import styles from './styles.module.css';
 import { manageTodoItems } from 'utils/fetch';
 
 const TaskCard = (props) => {
-  const { variant, data, setOpenModal } = props;
+  const { variant, data, setOpenModal, isLast, isFirst, handleMove } = props;
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -77,7 +77,9 @@ const TaskCard = (props) => {
                 data={item}
                 openEdit={openEditModal}
                 handleDelete={handleDelete}
-                handleMove={() => {}}
+                handleMove={(move) => handleMove(item.id, move)}
+                isFirst={isFirst}
+                isLast={isLast}
               />
             ))
           ) : (
@@ -103,11 +105,19 @@ const TaskCard = (props) => {
 TaskCard.defaultProps = {
   variant: '',
   data: null,
+  isLast: false,
+  isFirst: false,
+  setOpenModal: () => {},
+  handleMove: () => {},
 };
 
 TaskCard.propTypes = {
   variant: PropTypes.string,
   data: PropTypes.object,
+  isLast: PropTypes.bool,
+  isFirst: PropTypes.bool,
+  setOpenModal: PropTypes.func,
+  handleMove: PropTypes.func,
 };
 
 export default TaskCard;
