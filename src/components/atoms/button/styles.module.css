@@ -24,6 +24,7 @@
 .base-button.primary {
   background-color: var(--green-2);
   color: var(--white);
+  outline: 1px solid var(--green-2);
 }
 
 .base-button.secondary {
@@ -35,6 +36,7 @@
 .base-button.danger {
   background-color: var(--danger);
   color: var(--white);
+  outline: 1px solid var(--danger);
 }
 
 .base-button.text {

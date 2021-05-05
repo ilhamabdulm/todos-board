@@ -1,0 +1,27 @@
+.input-form {
+  width: 100%;
+}
+
+.input-form > p {
+  color: var(--dark-3);
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  width: 100%;
+  font-size: 1.4rem;
+  padding: 1rem;
+  margin-bottom: 1.4rem;
+  border: 1px solid var(--gray-1);
+  box-shadow: none;
+  border-radius: 0.2rem;
+}
+
+.input:focus {
+  outline-color: var(--gray-3);
+}
+
+.input::placeholder {
+  color: var(--gray-2);
+}

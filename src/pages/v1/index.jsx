@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import ModalBase from 'components/atoms/modal-base';
 import { TaskCard } from 'components/fragments';
 import MainLayout from 'components/layout/main-layout';
+import CreateModal from 'components/fragments/modal-create';
+
+import { getTodoList } from 'utils/fetch';
 
 import styles from './styles.module.css';
-import { getTodoList } from 'utils/fetch';
 
 const V1 = () => {
   const [openModal, setOpenModal] = useState({
@@ -18,6 +19,10 @@ const V1 = () => {
   const colorVariant = ['pink', 'purple', 'blue', 'green'];
 
   useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
     getTodoList()
       .then((res) => {
         console.log(res, 'Berhasil get todo');
@@ -26,7 +31,7 @@ const V1 = () => {
       .catch((err) => {
         console.log(err, 'error list todo');
       });
-  }, []);
+  };
 
   return (
     <>
@@ -36,12 +41,31 @@ const V1 = () => {
         </header>
         <section className={styles['content-container']}>
           {todos.map((todo, idx) => {
-            return <TaskCard variant={colorVariant[idx]} data={todo} />;
+            return (
+              <TaskCard
+                variant={colorVariant[idx] || 'blue'}
+                data={todo}
+                setOpenModal={setOpenModal}
+              />
+            );
           })}
         </section>
       </MainLayout>
 
-      {openModal.state && <ModalBase />}
+      {openModal.state && openModal.type === 'create' && (
+        <CreateModal
+          visible={openModal.state}
+          onClose={() =>
+            setOpenModal({
+              state: false,
+              data: null,
+              type: '',
+            })
+          }
+          id={openModal.data}
+          refetchData={fetchData}
+        />
+      )}
     </>
   );
 };

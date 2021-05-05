@@ -10,7 +10,7 @@ import styles from './styles.module.css';
 import { manageTodoItems } from 'utils/fetch';
 
 const TaskCard = (props) => {
-  const { variant, data } = props;
+  const { variant, data, setOpenModal } = props;
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -37,6 +37,14 @@ const TaskCard = (props) => {
       });
   };
 
+  const openCreateModal = () => {
+    setOpenModal({
+      state: true,
+      data: data.id,
+      type: 'create',
+    });
+  };
+
   return (
     <CardBase variant={variant} width="max-w-30">
       <header className={styles['card-header']}>
@@ -60,7 +68,7 @@ const TaskCard = (props) => {
         <Button
           icon={<PlusCircle />}
           variant="text"
-          handleClick={() => console.log('new task')}
+          handleClick={openCreateModal}
         >
           New Task
         </Button>
