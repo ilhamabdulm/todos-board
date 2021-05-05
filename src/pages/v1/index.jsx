@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import { TaskCard } from 'components/fragments';
+import {
+  TaskCard,
+  ConfirmationDelete,
+  ModalCreate,
+} from 'components/fragments';
 import MainLayout from 'components/layout/main-layout';
-import CreateModal from 'components/fragments/modal-create';
 
 import { getTodoList } from 'utils/fetch';
 
@@ -52,9 +55,9 @@ const V1 = () => {
         </section>
       </MainLayout>
 
-      {openModal.state && openModal.type === 'create' && (
-        <CreateModal
-          visible={openModal.state}
+      {openModal.state && (
+        <ModalCreate
+          visible={openModal.type === 'create' || openModal.type === 'edit'}
           onClose={() =>
             setOpenModal({
               state: false,
@@ -62,7 +65,25 @@ const V1 = () => {
               type: '',
             })
           }
-          id={openModal.data}
+          id={openModal.data.id}
+          data={openModal.type === 'edit' ? openModal.data : null}
+          isEdit={openModal.type === 'edit'}
+          refetchData={fetchData}
+        />
+      )}
+
+      {openModal.state && openModal.type === 'delete' && (
+        <ConfirmationDelete
+          visible={openModal.state && openModal.type === 'delete'}
+          onClose={() =>
+            setOpenModal({
+              state: false,
+              data: null,
+              type: '',
+            })
+          }
+          id={openModal.data.id}
+          data={openModal.data}
           refetchData={fetchData}
         />
       )}

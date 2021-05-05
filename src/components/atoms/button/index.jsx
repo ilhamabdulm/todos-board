@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 
 const Button = (props) => {
-  const { variant, handleClick, icon, children, ...rest } = props;
+  const { variant, handleClick, icon, children, style, ...rest } = props;
   const classes = [styles['base-button'], styles[variant]]
     .filter(Boolean)
     .join(' ');
 
   return (
-    <button className={classes} onClick={handleClick} {...rest}>
+    <button className={classes} onClick={handleClick} style={style} {...rest}>
       {icon &&
         (typeof icon === 'string' ? (
           <img
@@ -20,15 +20,18 @@ const Button = (props) => {
             }}
           />
         ) : (
-          <>{icon}</>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginRight: children ? '0.8rem' : 0,
+            }}
+          >
+            {icon}
+          </div>
         ))}
-      <span
-        style={{
-          marginLeft: icon ? '0.8rem' : 0,
-        }}
-      >
-        {children}
-      </span>
+      <span>{children}</span>
     </button>
   );
 };

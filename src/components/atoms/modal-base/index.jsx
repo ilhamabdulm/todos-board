@@ -33,23 +33,23 @@ const ModalBase = (props) => {
               style={{
                 display: icon ? 'block' : 'none',
                 color: iconColor,
-                marginRight: '2.4rem',
+                marginRight: '2.2rem',
               }}
             >
               <>{icon}</>
             </aside>
           )}
           <article style={{ width: '100%' }}>
-            <h1 style={{ marginBottom: '2.6rem' }}>{title}</h1>
+            <h1 style={{ marginBottom: '2rem' }}>{title}</h1>
             {children}
           </article>
         </div>
 
         <footer className={styles['modal-footer']}>
-          <Button variant="secondary" onClick={onClose}>
+          <Button variant="secondary" onClick={onClose} {...cancelButtonProps}>
             {cancelText || 'Cancel'}
           </Button>
-          <Button variant="primary" onClick={onOk}>
+          <Button variant="primary" onClick={onOk} {...okButtonProps}>
             {okText || 'Ok'}
           </Button>
         </footer>

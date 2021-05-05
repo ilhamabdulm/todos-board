@@ -4,12 +4,53 @@ import { CardBase } from 'components/atoms';
 
 import styles from './styles.module.css';
 import { Button } from 'components/atoms';
-import { Dots } from 'lib/images';
+import {
+  ArrowLeft,
+  ArrowRight,
+  DeleteOutlined,
+  Dots,
+  EditOutlined,
+} from 'lib/images';
 import { Progress } from 'components/atoms';
 import { Dropdown } from '..';
 
 const ItemCard = (props) => {
-  const { data } = props;
+  const { data, openEdit, handleDelete, handleMove } = props;
+
+  const dropdownMenu = [
+    {
+      text: (
+        <>
+          <ArrowLeft /> &nbsp;&nbsp; Move Left
+        </>
+      ),
+      action: () => console.log('menu 1'),
+    },
+    {
+      text: (
+        <>
+          <ArrowRight /> &nbsp;&nbsp; Move Right
+        </>
+      ),
+      action: () => console.log('menu 1'),
+    },
+    {
+      text: (
+        <>
+          <EditOutlined /> &nbsp;&nbsp; Edit
+        </>
+      ),
+      action: () => openEdit(data),
+    },
+    {
+      text: (
+        <>
+          <DeleteOutlined /> &nbsp;&nbsp; Delete
+        </>
+      ),
+      action: () => handleDelete(data),
+    },
+  ];
 
   return (
     <CardBase variant="default">
@@ -27,14 +68,12 @@ const ItemCard = (props) => {
               />
             </div>
 
-            <Dropdown
-              menu={[
-                { text: 'Menu 1', action: () => console.log('menu 1') },
-                { text: 'Menu 1', action: () => console.log('menu 1') },
-                { text: 'Menu 1', action: () => console.log('menu 1') },
-              ]}
-            >
-              <Button icon={<Dots />} variant="text" />
+            <Dropdown menu={dropdownMenu}>
+              <Button
+                icon={<Dots />}
+                variant="text"
+                style={{ padding: 0, cursor: 'pointer' }}
+              />
             </Dropdown>
           </div>
         </section>
@@ -45,10 +84,16 @@ const ItemCard = (props) => {
 
 ItemCard.defaultProps = {
   data: null,
+  openEdit: () => {},
+  handleDelete: () => {},
+  handleMove: () => {},
 };
 
 ItemCard.propTypes = {
   data: PropTypes.object,
+  openEdit: PropTypes.func,
+  handleDelete: PropTypes.func,
+  handleMove: PropTypes.func,
 };
 
 export default ItemCard;

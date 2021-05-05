@@ -1,25 +1,53 @@
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { ModalBase } from 'components/atoms';
-
-import styles from './styles.module.css';
 import { Input } from 'components/atoms';
-import { useState } from 'react';
+
 import { manageTodoItems } from 'utils/fetch';
 
+import styles from './styles.module.css';
+
 const CreateModal = (props) => {
-  const { visible, onClose, id, refetchData } = props;
+  const { visible, onClose, id, refetchData, data, isEdit } = props;
   const [values, setValues] = useState({
     name: '',
     progress_percentage: null,
   });
 
+  useEffect(() => {
+    if (isEdit && data) {
+      setValues({
+        name: data.name,
+        progress_percentage: data.progress_percentage,
+      });
+    } else {
+      setValues({
+        name: '',
+        progress_percentage: null,
+      });
+    }
+  }, [isEdit, data]);
+
   const handleSubmit = () => {
-    const payload = {
+    let payload = {
       ...values,
       progress_percentage: Number(values.progress_percentage),
     };
-    manageTodoItems(id, 'post', payload)
+
+    const itemId = data?.id || null;
+    const todoId = isEdit ? data.todo_id : id;
+    const method = itemId ? 'patch' : 'post';
+
+    if (isEdit) {
+      payload = {
+        ...payload,
+        target_todo_id: todoId,
+        done: payload.progress_percentage === 100 ? true : null,
+      };
+    }
+
+    manageTodoItems(todoId, method, payload, itemId)
       .then((res) => {
         console.log(res);
         onClose();
@@ -34,7 +62,7 @@ const CreateModal = (props) => {
     <ModalBase
       visible={visible}
       onClose={onClose}
-      title="Create Task"
+      title={isEdit ? `Edit Task` : 'Create Task'}
       width="70rem"
       okText="Save Task"
       onOk={handleSubmit}
@@ -81,6 +109,8 @@ CreateModal.defaultProps = {
   onClose: () => {},
   id: '',
   refetchData: () => {},
+  data: null,
+  isEdit: false,
 };
 
 CreateModal.propTypes = {
@@ -88,6 +118,8 @@ CreateModal.propTypes = {
   onClose: PropTypes.func,
   id: PropTypes.string | PropTypes.number,
   refetchData: PropTypes.func,
+  isEdit: PropTypes.bool,
+  data: PropTypes.any,
 };
 
 export default CreateModal;

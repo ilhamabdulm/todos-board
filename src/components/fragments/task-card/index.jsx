@@ -40,8 +40,24 @@ const TaskCard = (props) => {
   const openCreateModal = () => {
     setOpenModal({
       state: true,
-      data: data.id,
+      data: data,
       type: 'create',
+    });
+  };
+
+  const openEditModal = (item) => {
+    setOpenModal({
+      state: true,
+      data: item,
+      type: 'edit',
+    });
+  };
+
+  const handleDelete = (item) => {
+    setOpenModal({
+      state: true,
+      data: item,
+      type: 'delete',
     });
   };
 
@@ -55,7 +71,14 @@ const TaskCard = (props) => {
         {!loading ? (
           items.length ? (
             items.map((item) => (
-              <ItemCard key={item.id} variant="default" data={item} />
+              <ItemCard
+                key={item.id}
+                variant="default"
+                data={item}
+                openEdit={openEditModal}
+                handleDelete={handleDelete}
+                handleMove={() => {}}
+              />
             ))
           ) : (
             <ItemCard />

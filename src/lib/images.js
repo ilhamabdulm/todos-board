@@ -3,3 +3,7 @@ export { default as PlusCircle } from 'assets/icons/plus-circle';
 export { default as Dots } from 'assets/icons/dots';
 export { default as CheckCircle } from 'assets/icons/check-circle';
 export { default as ExcalamationCircle } from 'assets/icons/exclamation-circle';
+export { default as ArrowLeft } from 'assets/icons/arrow-left';
+export { default as ArrowRight } from 'assets/icons/arrow-right';
+export { default as DeleteOutlined } from 'assets/icons/delete';
+export { default as EditOutlined } from 'assets/icons/edit';
