@@ -30,8 +30,11 @@ const CreateModal = (props) => {
   }, [isEdit, data]);
 
   const handleSubmit = () => {
-    if (Number(values.progress_percentage) > 100) {
-      return alert('Maximum values is 100');
+    if (
+      Number(values.progress_percentage) > 100 ||
+      Number(values.progress_percentage) < 0
+    ) {
+      return alert('Maximum values is between 0 - 100');
     }
 
     let payload = {

@@ -74,7 +74,7 @@ const ItemCard = (props) => {
               />
             </div>
 
-            <Dropdown menu={dropdownMenu}>
+            <Dropdown menu={dropdownMenu} position={isLast ? 'left' : 'right'}>
               <Button
                 icon={<Dots />}
                 variant="text"
