@@ -11,6 +11,8 @@ const Input = (props) => {
     width,
     id,
     value,
+    min,
+    max,
     ...rest
   } = props;
 
@@ -26,6 +28,8 @@ const Input = (props) => {
         style={{ width: width || '' }}
         value={value}
         {...rest}
+        min={min || null}
+        max={max || null}
       />
     </label>
   );

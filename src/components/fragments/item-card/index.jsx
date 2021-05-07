@@ -70,7 +70,7 @@ const ItemCard = (props) => {
             <div style={{ width: '60%' }}>
               <Progress
                 percentage={data.progress_percentage}
-                isDone={data.done}
+                isDone={data.done || data.progress_percentage === 100}
               />
             </div>
 

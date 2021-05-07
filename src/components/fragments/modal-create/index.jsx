@@ -30,6 +30,10 @@ const CreateModal = (props) => {
   }, [isEdit, data]);
 
   const handleSubmit = () => {
+    if (Number(values.progress_percentage) > 100) {
+      return alert('Maximum values is 100');
+    }
+
     let payload = {
       ...values,
       progress_percentage: Number(values.progress_percentage),
@@ -97,6 +101,8 @@ const CreateModal = (props) => {
                 progress_percentage: val,
               });
             }}
+            min={0}
+            max={100}
           />
         </form>
       </section>
