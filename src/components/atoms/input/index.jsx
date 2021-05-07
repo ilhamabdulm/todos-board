@@ -43,6 +43,8 @@ Input.defaultProps = {
   id: '',
   value: null,
   onChange: () => {},
+  min: null,
+  max: null,
 };
 
 Input.propTypes = {
@@ -53,6 +55,8 @@ Input.propTypes = {
   id: PropTypes.string,
   value: PropTypes.any,
   onChange: PropTypes.func,
+  min: PropTypes.number | PropTypes.string,
+  max: PropTypes.number | PropTypes.string,
 };
 
 export default Input;
